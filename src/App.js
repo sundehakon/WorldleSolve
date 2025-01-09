@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Typography } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import axios from 'axios';
 
 function App() {
   const [data, setData] = useState(null);
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -14,10 +14,13 @@ function App() {
         console.error('Error fetching data: ', error);
       }
     };
-  });
+    fetchData();
+  }, []);
 
   return (
-    <Typography></Typography>
+    <Box>
+      <Typography>{data?.countryCode || 'Loading...'}</Typography>
+    </Box>
   );
 }
 
